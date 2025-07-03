@@ -1,9 +1,11 @@
+import { Outlet } from "react-router";
+import Navbar from "./components/layout/Navbar";
+
 function App() {
   return (
     <>
-      <h1 className="text-center mt-7 text-4xl text-green-600 font-semibold">
-        Welcome to Library Management System
-      </h1>
+      <Navbar />
+      <Outlet />
     </>
   );
 }
