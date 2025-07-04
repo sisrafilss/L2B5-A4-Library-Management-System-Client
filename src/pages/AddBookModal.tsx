@@ -1,5 +1,7 @@
+import FullScreenSpinner from "@/components/Spinner";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { useCreateBookMutation } from "@/redux/api/baseApi";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -17,6 +19,9 @@ type BookFormInputs = {
 
 const AddBookModal = () => {
   const [open, setOpen] = useState(false);
+
+  const [createBook, { isLoading }] = useCreateBookMutation();
+
   const {
     register,
     handleSubmit,
@@ -28,12 +33,25 @@ const AddBookModal = () => {
     },
   });
 
-  const onSubmit = (data: BookFormInputs) => {
+  const onSubmit = async (data: BookFormInputs) => {
     console.log("📘 Book Data Submitted:", data);
+
+    if (data.copies < 1) {
+      data.available = false;
+    } else {
+      data.available = true;
+    }
+
+    const result = await createBook(data);
+    console.log("result: ", result);
+
     toast.success("Book added successfully!");
     setOpen(false);
     reset(); // Reset the form
   };
+
+  if (isLoading) return <FullScreenSpinner />;
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -135,18 +153,6 @@ const AddBookModal = () => {
                     {errors.copies.message}
                   </p>
                 )}
-              </div>
-
-              {/* Available (Checkbox) */}
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="available"
-                  {...register("available")}
-                />
-                <label htmlFor="available" className="text-sm font-medium">
-                  Available
-                </label>
               </div>
 
               {/* Submit Button */}

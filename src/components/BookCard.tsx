@@ -5,7 +5,7 @@ type Book = {
   genre: string;
   isbn: string;
   copies: number;
-  isAvailable: boolean;
+  available: boolean;
   onEdit?: (id: string) => void;
   onDelete?: (id: string) => void;
   onBorrow?: (id: string) => void;
@@ -18,7 +18,7 @@ const BookCard = ({
   genre,
   isbn,
   copies,
-  isAvailable,
+  available,
   onEdit,
   onDelete,
   onBorrow,
@@ -44,10 +44,10 @@ const BookCard = ({
           <span className="font-medium">Availability:</span>
           <span
             className={`ml-1 font-semibold ${
-              isAvailable ? "text-green-600" : "text-red-600"
+              available ? "text-green-600" : "text-red-600"
             }`}
           >
-            {isAvailable ? "Available" : "Not Available"}
+            {available ? "Available" : "Not Available"}
           </span>
         </p>
       </div>
@@ -68,11 +68,11 @@ const BookCard = ({
         <button
           onClick={() => onBorrow?.(_id)}
           className={`${
-            isAvailable
+            available
               ? "bg-blue-600 hover:bg-blue-700"
               : "bg-gray-400 cursor-not-allowed"
           } text-white text-sm px-4 py-1 rounded-md transition`}
-          disabled={!isAvailable}
+          disabled={!available}
         >
           Borrow
         </button>
