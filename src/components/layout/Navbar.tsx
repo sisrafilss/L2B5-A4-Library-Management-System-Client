@@ -1,3 +1,4 @@
+import AddBookModal from "@/pages/AddBookModal";
 import { Menu, X } from "lucide-react"; // You can also use other icons if you prefer
 import { useState } from "react";
 import { Link } from "react-router";
@@ -19,13 +20,15 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden ml-5 md:flex space-x-6">
+          <div className="hidden ml-5 md:flex md:justify-center md:items-center space-x-6">
             <Link to="books" className="text-gray-700 hover:text-blue-600">
               Books
             </Link>
             <Link to="borrow" className="text-gray-700 hover:text-blue-600">
               Borrow
             </Link>
+
+            <AddBookModal />
           </div>
 
           {/* Mobile Hamburger Button */}
@@ -49,6 +52,7 @@ const Navbar = () => {
           <Link to="borrow" className="block text-gray-700 hover:text-blue-600">
             Borrow
           </Link>
+          <AddBookModal />
         </div>
       )}
     </nav>

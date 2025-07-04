@@ -1,5 +1,5 @@
 type Book = {
-  id: string;
+  _id: string;
   title: string;
   author: string;
   genre: string;
@@ -12,7 +12,7 @@ type Book = {
 };
 
 const BookCard = ({
-  id,
+  _id,
   title,
   author,
   genre,
@@ -54,19 +54,19 @@ const BookCard = ({
 
       <div className="mt-4 flex flex-wrap gap-2">
         <button
-          onClick={() => onEdit?.(id)}
+          onClick={() => onEdit?.(_id)}
           className="bg-yellow-400 hover:bg-yellow-500 text-white text-sm px-4 py-1 rounded-md transition"
         >
           Edit
         </button>
         <button
-          onClick={() => onDelete?.(id)}
+          onClick={() => onDelete?.(_id)}
           className="bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-1 rounded-md transition"
         >
           Delete
         </button>
         <button
-          onClick={() => onBorrow?.(id)}
+          onClick={() => onBorrow?.(_id)}
           className={`${
             isAvailable
               ? "bg-blue-600 hover:bg-blue-700"
