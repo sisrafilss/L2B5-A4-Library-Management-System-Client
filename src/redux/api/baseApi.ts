@@ -11,6 +11,7 @@ export const baseApi = createApi({
       query: () => "/books",
       providesTags: ["book"],
     }),
+
     createBook: builder.mutation({
       query: (bookData) => ({
         url: "/books",
@@ -19,7 +20,17 @@ export const baseApi = createApi({
       }),
       invalidatesTags: ["book"],
     }),
+    getSingleBook: builder.query({
+      query: (bookId) => {
+        console.log("inside base api, bookId:", bookId);
+        return `/books/${bookId}`;
+      },
+    }),
   }),
 });
 
-export const { useGetBooksQuery, useCreateBookMutation } = baseApi;
+export const {
+  useGetBooksQuery,
+  useCreateBookMutation,
+  useGetSingleBookQuery,
+} = baseApi;

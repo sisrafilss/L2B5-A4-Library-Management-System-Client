@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 type Book = {
   _id: string;
   title: string;
@@ -76,6 +78,15 @@ const BookCard = ({
         >
           Borrow
         </button>
+        <Link to={`${_id}`}>
+          <button
+            // onClick={() => onBorrow?.(_id)}
+            className={`bg-green-600 text-white text-sm px-4 py-1 rounded-md transition`}
+            disabled={!available}
+          >
+            Detail
+          </button>
+        </Link>
       </div>
     </div>
   );
