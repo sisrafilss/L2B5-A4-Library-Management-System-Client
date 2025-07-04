@@ -24,7 +24,7 @@ const BookCard = ({
   onBorrow,
 }: Book) => {
   return (
-    <div className="bg-white shadow-md rounded-2xl p-4 w-full max-w-md mx-auto sm:mx-0">
+    <div className="bg-white shadow-md rounded-2xl p-4 w-full max-w-sm mx-auto sm:mx-0">
       <h2 className="text-xl font-semibold text-blue-700 mb-2">{title}</h2>
 
       <div className="text-gray-700 text-sm space-y-1">
