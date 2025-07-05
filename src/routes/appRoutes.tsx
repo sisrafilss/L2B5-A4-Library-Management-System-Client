@@ -1,7 +1,7 @@
 import App from "@/App";
 import BookDetail from "@/pages/BookDetail";
 import { default as BookListPage } from "@/pages/BookListPage";
-import BorrowBookList from "@/pages/BorrowBookList";
+import BorrowSummary from "@/pages/BorrowSummary";
 import { createBrowserRouter } from "react-router";
 
 export const router = createBrowserRouter([
@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "borrow",
-        Component: BorrowBookList,
+        Component: BorrowSummary,
       },
     ],
   },

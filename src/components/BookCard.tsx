@@ -5,6 +5,7 @@ import { Link } from "react-router";
 import BorrowBookModal from "./BorrowBookModal";
 import ConfirmDialog from "./ConfirmDialog";
 import EditBookModal from "./EditBookModal";
+import FullScreenSpinner from "./Spinner";
 
 type Book = {
   _id: string;
@@ -23,7 +24,7 @@ const BookCard = (book: Book) => {
     book;
 
   const [openConfirm, setOpenConfirm] = useState(false);
-  const [deleteBook] = useDeleteBookMutation();
+  const [deleteBook, { isLoading }] = useDeleteBookMutation();
 
   const handleDeleteClick = () => {
     setOpenConfirm(true);
@@ -39,6 +40,10 @@ const BookCard = (book: Book) => {
       setOpenConfirm(false);
     }
   };
+
+  if (isLoading) {
+    return <FullScreenSpinner />;
+  }
 
   return (
     <>

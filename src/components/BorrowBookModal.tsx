@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 type BorrowFormInputs = {
   quantity: number;
@@ -19,6 +20,7 @@ interface BorrowBookModalProps {
 const BorrowBookModal = ({ bookId, disabled }: BorrowBookModalProps) => {
   const [open, setOpen] = useState(false);
   const [borrowBook, { isLoading }] = useBorrowBookMutation();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -47,6 +49,7 @@ const BorrowBookModal = ({ bookId, disabled }: BorrowBookModalProps) => {
       toast.success("Book borrowed successfully!");
       reset();
       setOpen(false);
+      navigate("/borrow");
     } catch {
       toast.error("Failed to borrow book.");
     }

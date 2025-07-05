@@ -5,7 +5,7 @@ export const baseApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://library-management-lilac-five.vercel.app/api",
   }),
-  tagTypes: ["book"],
+  tagTypes: ["book", "borrow"],
   endpoints: (builder) => ({
     getBooks: builder.query({
       query: () => "/books",
@@ -47,7 +47,13 @@ export const baseApi = createApi({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["book"],
+      invalidatesTags: ["book", "borrow"],
+    }),
+    getBorrowSummary: builder.query({
+      query: () => {
+        return `/borrow`;
+      },
+      providesTags: ["borrow"],
     }),
   }),
 });
@@ -59,4 +65,5 @@ export const {
   useUpdateBookMutation,
   useGetSingleBookQuery,
   useBorrowBookMutation,
+  useGetBorrowSummaryQuery,
 } = baseApi;

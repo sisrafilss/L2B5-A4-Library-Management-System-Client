@@ -25,7 +25,7 @@ const Navbar = () => {
               Books
             </Link>
             <Link to="borrow" className="text-gray-700 hover:text-blue-600">
-              Borrow
+              Borrow Summary
             </Link>
 
             <AddBookModal />
