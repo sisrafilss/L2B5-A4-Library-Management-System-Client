@@ -2,6 +2,7 @@ import { useDeleteBookMutation } from "@/redux/api/baseApi";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router";
+import BorrowBookModal from "./BorrowBookModal";
 import ConfirmDialog from "./ConfirmDialog";
 import EditBookModal from "./EditBookModal";
 
@@ -18,17 +19,8 @@ type Book = {
 };
 
 const BookCard = (book: Book) => {
-  const {
-    _id,
-    title,
-    author,
-    genre,
-    isbn,
-    copies,
-    description,
-    available,
-    onBorrow,
-  } = book;
+  const { _id, title, author, genre, isbn, copies, description, available } =
+    book;
 
   const [openConfirm, setOpenConfirm] = useState(false);
   const [deleteBook] = useDeleteBookMutation();
@@ -103,7 +95,7 @@ const BookCard = (book: Book) => {
           >
             Delete
           </button>
-          <button
+          {/* <button
             onClick={() => onBorrow?.(_id)}
             className={`${
               available
@@ -113,7 +105,8 @@ const BookCard = (book: Book) => {
             disabled={!available}
           >
             Borrow
-          </button>
+          </button> */}
+          <BorrowBookModal bookId={_id} disabled={!available} />
           <Link to={`${_id}`}>
             <button
               // onClick={() => onBorrow?.(_id)}
