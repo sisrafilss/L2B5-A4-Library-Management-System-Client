@@ -15,10 +15,6 @@ const BookListPage = () => {
     console.log("Edit book with ID:", id);
   };
 
-  const handleDelete = (id: string) => {
-    console.log("Delete book with ID:", id);
-  };
-
   const handleBorrow = (id: string) => {
     console.log("Borrow book with ID:", id);
   };
@@ -36,7 +32,6 @@ const BookListPage = () => {
               key={book._id}
               {...book}
               onEdit={handleEdit}
-              onDelete={handleDelete}
               onBorrow={handleBorrow}
             />
           ))}

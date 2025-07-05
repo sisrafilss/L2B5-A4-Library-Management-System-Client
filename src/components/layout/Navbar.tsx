@@ -15,7 +15,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/">
             <div className="flex-shrink-0 text-xl font-bold text-blue-600">
-              Book Manager
+              Library Manager
             </div>
           </Link>
 
