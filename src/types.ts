@@ -5,5 +5,6 @@ export type Book = {
   genre: string;
   isbn: string;
   copies: number;
+  description: string;
   available: boolean;
 };

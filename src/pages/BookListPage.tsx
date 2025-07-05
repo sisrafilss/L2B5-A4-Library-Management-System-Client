@@ -11,10 +11,6 @@ const BookListPage = () => {
   }
   console.log("data", data);
 
-  const handleEdit = (id: string) => {
-    console.log("Edit book with ID:", id);
-  };
-
   const handleBorrow = (id: string) => {
     console.log("Borrow book with ID:", id);
   };
@@ -28,12 +24,7 @@ const BookListPage = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {!isError &&
           data?.data.map((book: Book) => (
-            <BookCard
-              key={book._id}
-              {...book}
-              onEdit={handleEdit}
-              onBorrow={handleBorrow}
-            />
+            <BookCard key={book._id} {...book} onBorrow={handleBorrow} />
           ))}
 
         {/* {mockBooks.map((book) => (

@@ -3,6 +3,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router";
 import ConfirmDialog from "./ConfirmDialog";
+import EditBookModal from "./EditBookModal";
 
 type Book = {
   _id: string;
@@ -12,21 +13,23 @@ type Book = {
   isbn: string;
   copies: number;
   available: boolean;
-  onEdit?: (id: string) => void;
+  description: string;
   onBorrow?: (id: string) => void;
 };
 
-const BookCard = ({
-  _id,
-  title,
-  author,
-  genre,
-  isbn,
-  copies,
-  available,
-  onEdit,
-  onBorrow,
-}: Book) => {
+const BookCard = (book: Book) => {
+  const {
+    _id,
+    title,
+    author,
+    genre,
+    isbn,
+    copies,
+    description,
+    available,
+    onBorrow,
+  } = book;
+
   const [openConfirm, setOpenConfirm] = useState(false);
   const [deleteBook] = useDeleteBookMutation();
 
@@ -76,12 +79,24 @@ const BookCard = ({
         </div>
 
         <div className="mt-4 flex flex-wrap gap-2">
-          <button
+          {/* <button
             onClick={() => onEdit?.(_id)}
             className="bg-yellow-400 hover:bg-yellow-500 text-white text-sm px-4 py-1 rounded-md transition"
           >
             Edit
-          </button>
+          </button> */}
+          <EditBookModal
+            book={{
+              id: _id,
+              title,
+              author,
+              genre,
+              isbn,
+              description,
+              copies,
+              available,
+            }}
+          />
           <button
             onClick={handleDeleteClick}
             className="bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-1 rounded-md transition"
